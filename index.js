@@ -7,10 +7,12 @@ const PORT=process.env.PORT || 4000;
 const authRouter=require('./routes/authRoute')
 const cors = require("cors");
 const { errorHandler, notFound } = require('./middlewares/errorHandler');
+const cookieParser= require('cookie-parser')
 
 dbConnect();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/user", authRouter);
 app.use(notFound)
