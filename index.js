@@ -5,16 +5,20 @@ const app=express()
 const dotenv=require('dotenv').config();
 const PORT=process.env.PORT || 4000;
 const authRouter=require('./routes/authRoute')
+const productRouter=require('./routes/productRoute')
 const cors = require("cors");
 const { errorHandler, notFound } = require('./middlewares/errorHandler');
-const cookieParser= require('cookie-parser')
+const cookieParser= require('cookie-parser');
+const morgan=require('morgan')
 
 dbConnect();
+app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/user", authRouter);
+app.use("/api/product", productRouter);
 app.use(notFound)
 app.use(errorHandler)
 
