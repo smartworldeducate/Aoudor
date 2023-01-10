@@ -7,6 +7,9 @@ const PORT=process.env.PORT || 4000;
 const authRouter=require('./routes/authRoute')
 const productRouter=require('./routes/productRoute')
 const blogRouter=require('./routes/blogRoute')
+const categoryRouter=require('./routes/prodcategoryRoute')
+const blogcatRouter=require('./routes/blogCatRoute')
+const brandRouter=require('./routes/brandRoute')
 const cors = require("cors");
 const { errorHandler, notFound } = require('./middlewares/errorHandler');
 const cookieParser= require('cookie-parser');
@@ -21,6 +24,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/user", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/blog", blogRouter);
+app.use("/api/category", categoryRouter);
+app.use("/api/blogcategory", blogcatRouter);
+app.use("/api/brand", brandRouter);
+
 app.use(notFound)
 app.use(errorHandler)
 

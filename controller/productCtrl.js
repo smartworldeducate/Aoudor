@@ -1,7 +1,7 @@
 const Product= require("../models/productModel")
 const asyncHandler=require('express-async-handler')
 const slugify=require('slugify')
-
+const validateMongoDbId = require('../utils/validateMongodbId');
 
 
 const createProduct=asyncHandler(async(req,res)=>{
@@ -19,6 +19,7 @@ const createProduct=asyncHandler(async(req,res)=>{
 
 const updateProduct= asyncHandler(async(req,res)=>{
     const {id}=req.params;
+    validateMongoDbId(id)
     try{
         if(req.body.title){
             req.body.slug=slugify(req.body.title)
@@ -36,6 +37,7 @@ const updateProduct= asyncHandler(async(req,res)=>{
 
 const deleteProduct= asyncHandler(async(req,res)=>{
     const {id}=req.params;
+    validateMongoDbId(id)
     try{
       
         const deleteProduct=await Product.findOneAndDelete(id);
@@ -45,6 +47,8 @@ const deleteProduct= asyncHandler(async(req,res)=>{
     }
    
 })
+
+
 
 
 
