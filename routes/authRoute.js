@@ -1,6 +1,7 @@
 const express=require('express')
 const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus}=require('../controller/userCtrl');
-const { authMiddleware, isAdmin } = require('../middlewares/AuthMiddleware');
+// const { authMiddleware, isAdmin } = require('../middlewares/AuthMiddleware');
+const {authMiddleware,isAdmin} =require('../middlewares/authMiddleware')
 
 const router=express.Router();
 
